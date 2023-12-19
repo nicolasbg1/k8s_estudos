@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-rs
+  labels:
+    app: nginx
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: "nginx:latest"
+          ports:
+            - containerPort: 80
+          # volumesMounts:
+          #   - name: nginx-volume
+          #     mountPath: /usr/share/nginx/html
+          # volumes:
+          #   - name: nginx-volume
+          #     persistentVolumeClaim:
+          #       clainName: my-volume
